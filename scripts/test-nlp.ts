@@ -1,4 +1,4 @@
-import { extractTransactionDetails } from '../src/app/actions/nlp'
+import { extractTransactionDetails } from '../src/utils/nlp'
 
 const mockAccounts = [
     { id: 'acc_1', name: 'Tarjeta BBVA' },

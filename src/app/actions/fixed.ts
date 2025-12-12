@@ -33,7 +33,9 @@ export async function addFixedExpense(formData: FormData) {
     const nextChargeDate = formData.get('next_charge_date') as string
 
     const user = (await supabase.auth.getUser()).data.user
-    if (!user) return { error: 'Unauthorized' }
+    if (!user) {
+        redirect('/login')
+    }
 
     const { error } = await supabase.from('fixed_expenses').insert({
         user_id: user.id,
@@ -44,7 +46,7 @@ export async function addFixedExpense(formData: FormData) {
         next_charge_date: nextChargeDate
     })
 
-    if (error) return { error: error.message }
+    if (error) redirect(`/fixed/new?error=${encodeURIComponent(error.message)}`)
 
     revalidatePath('/fixed')
     redirect('/fixed')
@@ -57,6 +59,6 @@ export async function deleteFixedExpense(id: string) {
         .delete()
         .eq('id', id)
 
-    if (error) return { error: error.message }
+    if (error) redirect(`/fixed?error=${encodeURIComponent(error.message)}`)
     revalidatePath('/fixed')
 }

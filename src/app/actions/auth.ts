@@ -16,11 +16,11 @@ export async function login(formData: FormData) {
     })
 
     if (error) {
-        return { error: error.message }
+        redirect(`/login?error=${encodeURIComponent(error.message)}`)
     }
 
     revalidatePath('/', 'layout')
-    redirect('/dashboard')
+    redirect('/')
 }
 
 export async function signup(formData: FormData) {
@@ -38,10 +38,10 @@ export async function signup(formData: FormData) {
     })
 
     if (error) {
-        return { error: error.message }
+        redirect(`/login?error=${encodeURIComponent(error.message)}`)
     }
 
-    return { message: 'Check your email to continue sign in process' }
+    redirect('/login?message=Check your email to continue sign in process')
 }
 
 export async function signout() {

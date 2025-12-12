@@ -43,7 +43,8 @@ export async function getDashboardMetrics() {
             if (tDate >= startOfWeek) week += amount
             if (tDate >= startOfDay) today += amount
 
-            const catName = t.categories?.name || 'Uncategorized'
+            // @ts-expect-error: handling array vs object mismatch from join
+            const catName = t.categories?.name || t.categories?.[0]?.name || 'Uncategorized'
             categoryMap.set(catName, (categoryMap.get(catName) || 0) + amount)
         } else if (t.type === 'income') {
             incomeMonth += amount

@@ -16,7 +16,7 @@ export async function addTransaction(formData: FormData) {
 
     const user = (await supabase.auth.getUser()).data.user
     if (!user) {
-        return { error: 'Not authenticated' }
+        redirect('/login')
     }
 
     // 1. Insert Transaction
@@ -31,7 +31,7 @@ export async function addTransaction(formData: FormData) {
     })
 
     if (txError) {
-        return { error: txError.message }
+        redirect(`/new?error=${encodeURIComponent(txError.message)}`)
     }
 
     // 2. Update Account Balance

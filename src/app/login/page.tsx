@@ -4,13 +4,26 @@ import styles from './login.module.css'
 export default function LoginPage({
     searchParams,
 }: {
-    searchParams: { message?: string; error?: string }
+    searchParams: { error?: string, message?: string }
 }) {
     return (
         <div className={styles.container}>
-            <div className={`${styles.card} glass`}>
-                <h1 className={styles.title}>MiControl</h1>
-                <p className={styles.subtitle}>Manage your finances with intelligence</p>
+            <div className={styles.card}>
+                <div className={styles.cardHeader}>
+                    <h1 className={styles.title}>Welcome Back</h1>
+                    <p className={styles.subtitle}>Sign in to your account</p>
+                </div>
+
+                {searchParams.error && (
+                    <div style={{ color: 'red', marginBottom: '1rem', padding: '0.5rem', background: 'rgba(255,0,0,0.1)', borderRadius: '8px', textAlign: 'center' }}>
+                        {searchParams.error}
+                    </div>
+                )}
+                {searchParams.message && (
+                    <div style={{ color: 'green', marginBottom: '1rem', padding: '0.5rem', background: 'rgba(0,255,0,0.1)', borderRadius: '8px', textAlign: 'center' }}>
+                        {searchParams.message}
+                    </div>
+                )}
 
                 <form className={styles.form}>
                     <div className={styles.inputGroup}>

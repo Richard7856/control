@@ -5,7 +5,11 @@ import styles from './new-fixed.module.css'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
-export default async function NewFixedExpensePage() {
+export default async function NewFixedExpensePage({
+    searchParams
+}: {
+    searchParams: { error?: string }
+}) {
     const accounts = await getAccounts()
     const categories = await getCategories()
 
@@ -17,6 +21,12 @@ export default async function NewFixedExpensePage() {
                 </Link>
                 <h1 className={styles.title}>New Fixed Expense</h1>
             </header>
+
+            {searchParams.error && (
+                <div style={{ color: 'red', marginBottom: '1rem', padding: '0.5rem', background: 'rgba(255,0,0,0.1)', borderRadius: '8px' }}>
+                    {searchParams.error}
+                </div>
+            )}
 
             <form action={addFixedExpense} className={styles.form}>
                 <div className={styles.inputGroup}>

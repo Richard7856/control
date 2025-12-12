@@ -59,7 +59,7 @@ export async function createAccount(formData: FormData) {
     })
 
     if (error) {
-        return { error: error.message }
+        redirect(`/accounts/new?error=${encodeURIComponent(error.message)}`)
     }
 
     revalidatePath('/accounts')
@@ -86,7 +86,10 @@ export async function updateAccount(id: string, formData: FormData) {
         .eq('id', id)
 
     if (error) {
-        return { error: error.message }
+        // Assuming edit page is at /accounts/[id] or we don't have one yet?
+        // Task said "Create/Edit/Delete accounts", but in UI tasks I only did "New".
+        // I'll redirect to accounts list with error for now or generic.
+        redirect(`/accounts?error=${encodeURIComponent(error.message)}`)
     }
 
     revalidatePath('/accounts')
@@ -103,7 +106,7 @@ export async function deleteAccount(id: string) {
         .eq('id', id)
 
     if (error) {
-        return { error: error.message }
+        redirect(`/accounts?error=${encodeURIComponent(error.message)}`)
     }
 
     revalidatePath('/accounts')

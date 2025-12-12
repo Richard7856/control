@@ -4,7 +4,11 @@ import styles from './new-transaction.module.css'
 import Link from 'next/link'
 import { X } from 'lucide-react'
 
-export default async function NewTransactionPage() {
+export default async function NewTransactionPage({
+    searchParams
+}: {
+    searchParams: { error?: string }
+}) {
     const accounts = await getAccounts()
     const categories = await getCategories()
 
@@ -16,6 +20,12 @@ export default async function NewTransactionPage() {
                     <X size={24} />
                 </Link>
             </header>
+
+            {searchParams.error && (
+                <div style={{ color: 'red', marginBottom: '1rem', padding: '0.5rem', background: 'rgba(255,0,0,0.1)', borderRadius: '8px' }}>
+                    {searchParams.error}
+                </div>
+            )}
 
             <form className={styles.form} action={addTransaction}>
                 <div className={styles.amountWrapper}>

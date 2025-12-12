@@ -1,27 +1,33 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Premium Color Palette (Dark Theme Base) */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  
+  --card-bg: #171717;
+  --card-border: #262626;
+  
+  --primary: #2563eb; /* Vivid Blue */
+  --primary-foreground: #ffffff;
+  
+  --accent: #f59e0b; /* Amber */
+  --accent-foreground: #ffffff;
+  
+  --danger: #ef4444;
+  --success: #10b981;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(23, 23, 23, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Spacing */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
 }
 
 * {
@@ -30,13 +36,40 @@ body {
   margin: 0;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Utilities */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 640px; /* Mobile first logic, limit width on desktop for this app style */
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px; /* Keep it mobile-app like */
   }
 }

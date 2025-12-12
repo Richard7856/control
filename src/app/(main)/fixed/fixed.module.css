@@ -1,0 +1,85 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.backButton {
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--foreground);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item {
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.amount {
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.details {
+    color: #888;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+}
+
+.date {
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.empty {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
